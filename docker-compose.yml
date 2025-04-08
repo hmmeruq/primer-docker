@@ -14,17 +14,6 @@ services:
       - GLPI_DB_NAME=glpi
     volumes:
       - glpi_data:/var/www/html/files
-
-  db:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ROOT_PASSWORD=root_password  # Asegúrate de que esta línea esté presente
-      - MYSQL_DATABASE=glpi
-      - MYSQL_USER=glpi
-      - MYSQL_PASSWORD=glpi_password
-    volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
+      
+  volumes:
   glpi_data:
-  db_data:
