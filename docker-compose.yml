@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  glpi:
+    image: diouxx/glpi
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - GLPI_DB_HOST=db
+      - GLPI_DB_USER=glpi
+      - GLPI_DB_PASSWORD=glpi_password
+      - GLPI_DB_NAME=glpi
+    volumes:
+      - glpi_data:/var/www/html/files
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password  # Asegúrate de que esta línea esté presente
+      - MYSQL_DATABASE=glpi
+      - MYSQL_USER=glpi
+      - MYSQL_PASSWORD=glpi_password
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  glpi_data:
+  db_data:
